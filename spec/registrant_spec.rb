@@ -31,6 +31,18 @@ RSpec.describe Registrant do
       expect(@registrant_2.permit?).to eq false
     end
 
+    it 'can earn a permit' do
+      expect(@registrant_2.permit?).to eq false
+      @registrant_2.earn_permit
+      expect(@registrant_2.permit?).to eq true
+    end
+
+    it 'cannot lose permit once true' do
+      expect(@registrant_1.permit?).to eq true
+      @registrant_1.earn_permit
+      expect(@registrant_1.permit?).to eq true
+    end
+    
     it 'has license data' do
 
       expect(@registrant_1.license_data).to eq ({:written=>false, :license=>false, :renewed=>false})
