@@ -26,7 +26,7 @@ RSpec.describe Facility do
       @facility.add_service('Renew Drivers License')
       @facility.add_service('Vehicle Registration')
       expect(@facility.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
-    end
+    end       
   end
 
   describe '#has registered vehicles and charges' do   
@@ -64,6 +64,14 @@ RSpec.describe Facility do
     end
 
     it 'will not affect other facilities' do
+      @facility.add_service('Vehicle Registration')
+      @facility.register_vehicle(@cruz)
+      @facility.register_vehicle(@camaro)
+      @facility.register_vehicle(@bolt)
+      expect(@facility_2.collected_fees).to eq (0)
+      expect(@facility_2.registered_vehicles).to eq ([])
+    end
+
   end
 
   describe '#can provide license services' do
@@ -102,8 +110,7 @@ RSpec.describe Facility do
       expect(facility.renew_license(registrant)).to be false
     end
   end
-end
-      
+end 
 
   
-end
+
