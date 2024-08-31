@@ -7,6 +7,9 @@ RSpec.describe Facility do
     @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
     @bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
     @camaro = Vehicle.new({vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice} )
+    @registrant_1 = Registrant.new('Bruce', 18, true )
+    @registrant_2 = Registrant.new('Penny', 16 )
+    @registrant_3 = Registrant.new('Tucker', 15 )
   end
   describe '#initialize' do
     it 'can initialize' do
@@ -73,41 +76,46 @@ RSpec.describe Facility do
     end
 
   end
-
+    
   describe '#can provide license services' do
     it 'gives written test when registrant is eligible'do
-      registrant.give_permit
+      @facility.add_service('Written Test')  
+      @registrant_1.earn_permit   
 
-      expect(@facility.administer_written_test(registrant)).to be true
-      expect(@facility.passed_written_test?).to be true
+      expect(@facility.administer_written_test(@registrant_1)).to be true
+      expect(@registrant_1.passed_written_test?).to be true
     end
 
     it 'will not give a test if registrant not eligible' do
 
-      expect(@facility.administer_written_test(registrant)).to be false
-      expect(@facility.passed_written_test?).to be false
+      expect(@facility.administer_written_test(@registrant_2)).to be false
+      expect(@registrant_2.passed_written_test?).to be false
     end
 
     it 'performs the road test when written test is passed' do
-      registrant.passed_written_test
+      @facility.add_service('Road Test')
+      @registrant_1.pass_written_test
 
-      expect(@facility.administer_road_test(registrant)).to be true
-      expect(@registrant.has_license?).to be true
+      expect(@facility.administer_road_test(@registrant_1)).to be true
+      expect(@registrant_1.has_license?).to be true
     end
 
     it 'does not perform without passed written test' do
-      expect(@facility.administer_road_test(registrant)).to be false
-      expect(@registrant.has_license?).to be false
+      expect(@facility.administer_road_test(@registrant_2)).to be false
+      expect(@registrant_2.has_license?).to be false
     end
 
     it 'renews license if registrant has license' do
-      registrant.earn_license
-
-      expect(@facility.renew_license(registrant)).to be true
+      @facility.add_service('Renew License')
+      @registrant_1.pass_road_test      
+      @registrant_1.earn_license
+      @registrant_1.renew_license
+        # require 'pry';binding.pry
+      expect(@facility.renew_license(@registrant_1)).to be true
     end
 
     it 'does not renew license if registrant has no license' do
-      expect(facility.renew_license(registrant)).to be false
+      expect(@facility.renew_license(@registrant_2)).to be false
     end
   end
 end 
