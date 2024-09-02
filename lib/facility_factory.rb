@@ -20,7 +20,7 @@ class FacilityFactory
     when 'MO'
       create_mo_facility(data)
     else
-      puts "No data for #{state}"
+      "No data for #{state}"
     end
   end
 
@@ -62,8 +62,19 @@ class FacilityFactory
     })
   end
     
+  def create_mo_facility(data)
+    address =[
+      data[:address1],
+      data[:city],
+      data[:state],
+      data[:zipcode],
+    ].compact.join(', ')
 
-
-  
+    facility = Facility.new({
+      name: data[:name],
+      address: address,
+      phone: data[:phone]
+    })
+  end 
   
 end
