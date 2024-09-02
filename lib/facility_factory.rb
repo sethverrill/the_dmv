@@ -46,6 +46,24 @@ class FacilityFactory
     facility
   end
 
+  def create_ny_facility(data)
+    address = [
+      data[:street_address_line_1],
+      data[:street_address_line_2],
+      data[:city],
+      data[:state],
+      data[:zip_code]
+    ].compact.join(', ')
+
+    facility = Facility.new({
+      name: data[:office_name],
+      address: address,
+      phone: data[:public_phone_number]
+    })
+  end
+    
+
+
   
   
 end
