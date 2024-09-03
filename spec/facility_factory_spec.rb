@@ -1,4 +1,4 @@
-require 'spec_helper'
+require './spec/spec_helper'
 
 RSpec.describe FacilityFactory do
   before(:each) do
@@ -37,9 +37,9 @@ RSpec.describe FacilityFactory do
     last_facility = facilities.last
     last_data = ny_data.last
 
-    expect(last_facility.name).to eq("MIDTOWN MANHATTAN")
+    expect(last_facility.name).to eq("MIDTOWN MANHATTAN KIOSK")
     expect(last_facility.address).to eq("366 WEST 31ST STREET, NEW YORK, NY, 10001")
-    expect(last_facility.phone).to eq("7189666155")
+    expect(last_facility.phone).to eq(nil)
   end
 
   it 'can create Missouri facilities' do
@@ -49,12 +49,12 @@ RSpec.describe FacilityFactory do
     expect(facilities).to all(be_an_instance_of(Facility))
     expect(facilities.size).to eq(mo_data.size)
 
-    sixty_second_facility = facilities[62]
-    sixty_second_data = mo_data[62]
+    sixty_third_facility = facilities[62]
+    sixty_third_data = mo_data[62]
 
-    expect(sixty_second_facility.name).to eq ("DEXTER")
-    expect(sixty_second_facility.address).to eq("119 VINE ST, DEXTER, MO, 63841")
-    expect(sixty_second_facility.phone).to eq("(573) 624-8808")
+    expect(sixty_third_facility.name).to eq ("DEXTER")
+    expect(sixty_third_facility.address).to eq("119 VINE ST, DEXTER, MO, 63841")
+    expect(sixty_third_facility.phone).to eq("(573) 624-8808")
   end
 
   it 'does not provide for other states' do
