@@ -1,6 +1,8 @@
 require './spec/spec_helper'
 
 puts "STATISTICS!!!"
+puts "-------------"
+puts "Ev Stats:"
 
 
 def popular_ev
@@ -44,6 +46,7 @@ def county_cars
     highest_county = county_count.max_by {|_, count| count}
     "The county with the highest number of EVs is #{highest_county[0]} with #{highest_county[1]} registrations!"
 end
+
 
 
   
