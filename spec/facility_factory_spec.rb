@@ -34,12 +34,12 @@ RSpec.describe FacilityFactory do
     expect(facilities).to all(be_an_instance_of(Facility))
     expect(facilities.size).to eq(ny_data.size)
     
-    last_facility = facilities.last
-    last_data = ny_data.last
+    twenty_first_facility = facilities[20]
+    twenty_first_data = ny_data[20]
 
-    expect(last_facility.name).to eq("MIDTOWN MANHATTAN KIOSK")
-    expect(last_facility.address).to eq("366 WEST 31ST STREET, NEW YORK, NY, 10001")
-    expect(last_facility.phone).to eq(nil)
+    expect(twenty_first_facility.name).to eq("PORT JEFFERSON")
+    expect(twenty_first_facility.address).to eq("1055 ROUTE 112, PORT JEFFERSON, NY, 11776")
+    expect(twenty_first_facility.phone).to eq("7184774820")
   end
 
   it 'can create Missouri facilities' do
