@@ -36,10 +36,10 @@ class FacilityFactory
     facility = Facility.new({
       name: data[:dmv_office],
       address: address,
-      phone: data[:phone]
+      phone: data[:phone]           
     })
 
-    services = data[:services_p].split (', ')
+    services = data[:services_p].split(', ')
     services.each do |service|
       facility.add_service(service)
     end
@@ -58,7 +58,7 @@ class FacilityFactory
     facility = Facility.new({
       name: data[:office_name],
       address: address,
-      phone: data[:public_phone_number]
+      phone: data[:public_phone_number]      
     })
   end
     
@@ -73,7 +73,8 @@ class FacilityFactory
     facility = Facility.new({
       name: data[:name],
       address: address,
-      phone: data[:phone]
+      phone: data[:phone],
+      holidays_closed: data[:holidaysclosed]
     })
   end 
   
