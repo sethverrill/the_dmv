@@ -1,11 +1,12 @@
 class Facility
-  attr_reader :name, :address, :phone, :services
+  attr_reader :name, :address, :phone, :services, :holidays_closed
   attr_accessor :registered_vehicles, :collected_fees
 
   def initialize(facility_hash)
     @name = facility_hash[:name]
     @address = facility_hash[:address]
     @phone = facility_hash[:phone]
+    @holidays_closed = facility_hash[:holidays_closed]
     @services = []
     @registered_vehicles = []
     @collected_fees = 0
